@@ -1,0 +1,2 @@
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\obj\Release\ByteBank.csproj.AssemblyReference.cache
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\obj\Release\ByteBank.csproj.CoreCompileInputs.cache

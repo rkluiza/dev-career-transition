@@ -1,0 +1,8 @@
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\bin\Debug\ByteBank.exe.config
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\bin\Debug\ByteBank.exe
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\bin\Debug\ByteBank.pdb
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\obj\Debug\ByteBank.csproj.AssemblyReference.cache
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\obj\Debug\ByteBank.csproj.CoreCompileInputs.cache
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\obj\Debug\ByteBank.exe
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\obj\Debug\ByteBank.pdb
+C:\estudos-dev\csharp\csharpexceptions-projetoInicial\ByteBank\obj\Debug\ByteBank.exe.config
