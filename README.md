@@ -10,7 +10,8 @@ O objetivo foi de consolidar fundamentos, praticar código e demonstrar evoluç�
 
 Cada projeto representa um desafio diferente, abordando conceitos bem diferentes. Foram separados diretórios por temas estudados, e, dentro desses diretórios, temos outros diretório, esses com o projeto conforme o curso estudado.
 
-    **📁 css (tema geral)
-     |--> 📁 alura-store (projeto de um curso)**
+   📁 css (tema geral)
+     |--> 📁 alura-store (projeto de um curso)
+
 
 A única excessão acontece no diretório **1-primeira-fase**, nele temos projetos desenvolvidos na primeira parte do processo seletivo.
