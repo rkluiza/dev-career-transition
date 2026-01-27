@@ -14,7 +14,7 @@ maria.CPF = 98765432100;
 const contaCorrenteAndre = new ContaCorrente();
 contaCorrenteAndre.agencia = 1001;
 contaCorrenteAndre.numero = 123456;
-
+contaCorrenteAndre.cliente = andre;
 
 console.log(andre);
 console.log(contaCorrenteAndre);
