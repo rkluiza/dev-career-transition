@@ -1,0 +1,12 @@
+.Lista_lista {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    height: fit-content;
+}
+
+.Lista_lista__li {
+    display: inline-block;
+}
