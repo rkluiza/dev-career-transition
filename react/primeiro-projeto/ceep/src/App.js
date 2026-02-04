@@ -3,35 +3,33 @@ import FormularioCadastro from './components/FormularioCadastro';
 import React from 'react';
 import './assets/App.css';
 import './assets/index.css';
+import ListaDeCategorias from './components/ListaDeCategorias';
+import Categorias from './assets/dados/Categorias';
 
 
 class App extends React.Component {
 
   constructor(){
     super();
-
-    this.state = {
-      notas: []
-    };
+    this.categorias = new Categorias();
+    this.notas = new Notas();
   }
-
-  criarNota(titulo, texto) {
-    const novaNota = {titulo, texto};
-    console.log(this.notas);
-
-    const novoArrayNotas = [...this.state.notas,novaNota];
-
-    const novoEstado = {
-      notas: novoArrayNotas
-    }
-    this.setState(novoEstado);
-  }
-
   render() {
     return (
       <section className='conteudo'>
-        <FormularioCadastro criarNota={this.criarNota.bind(this)}/>
-        <ListaDeNotas notas={this.state.notas}/>
+        <FormularioCadastro
+        categorias={this.categorias.categorias}
+        criarNota={this.notas.criarNota}/>
+        
+        <main className='conteudo-principal'>
+            <ListaDeCategorias
+            adicionarCategoria={this.adicionarCategoria.bind(this)}
+            categorias={this.categorias.categorias}/>
+            <ListaDeNotas
+            apagarNota={this.notas.deletarNota}
+            notas={this.notas.notas}/>
+
+        </main>
       </section>
     );
   }

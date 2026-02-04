@@ -9,3 +9,7 @@
     --fundo: #f5f5f5;
     --fundo-detalhes: #ececec
 }
+
+.conteudo-principal {
+    flex-grow: 3;
+}
