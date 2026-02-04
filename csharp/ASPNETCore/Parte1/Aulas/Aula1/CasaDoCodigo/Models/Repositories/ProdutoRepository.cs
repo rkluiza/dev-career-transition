@@ -1,12 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
+﻿using CasaDoCodigo.Models;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using static Microsoft.AspNetCore.Hosting.Internal.HostingApplication;
+using System.Threading.Tasks;
 
 namespace CasaDoCodigo.Models.Repositories
 {
-    public class ProdutoRepository : IProdutoRepository
+    public class ProdutoRepository : BaseRepository<Produto>, IProdutoRepository
     {
 
         public ProdutoRepository(ApplicationContext contexto) : base(contexto)
@@ -14,10 +15,9 @@ namespace CasaDoCodigo.Models.Repositories
 
         }
 
-
         public IList<Produto> GetProdutos()
         {
-            return contexto.Set<Produto>().ToList();
+            return produtos.ToList();
         }
 
         public void SaveProdutos(List<Livro> livros)
@@ -25,7 +25,7 @@ namespace CasaDoCodigo.Models.Repositories
             foreach (var livro in livros)
             {
 
-                if (!produtos.Where(p => p.Codigo == livro.Codigo)).Any){
+                if (!produtos.Where(p => p.Codigo == livro.Codigo).Any()){
                    produtos.Add(new Produto(livro.Codigo, livro.Nome, livro.Preco));
                 }
 

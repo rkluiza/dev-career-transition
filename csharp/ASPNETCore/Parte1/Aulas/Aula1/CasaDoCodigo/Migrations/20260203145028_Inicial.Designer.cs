@@ -10,7 +10,7 @@ using System;
 
 namespace CasaDoCodigo.Migrations
 {
-    [DbContext(typeof(AplicationContext))]
+    [DbContext(typeof(ApplicationContext))]
     [Migration("20260203145028_Inicial")]
     partial class Inicial
     {

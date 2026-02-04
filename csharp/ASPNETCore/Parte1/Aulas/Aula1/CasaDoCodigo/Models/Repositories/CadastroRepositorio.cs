@@ -8,7 +8,7 @@
 
     public class CadastroRepository : BaseRepository<Cadastro>, ICadastroRepository
     {
-        public CadastroRepository(AplicationContext contexto) : base(contexto)
+        public CadastroRepository(ApplicationContext contexto) : base(contexto)
         {
         }
     }

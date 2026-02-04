@@ -3,11 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CasaDoCodigo
 {
-    public class AplicationContext : DbContext
+    public class ApplicationContext : DbContext
     {
-        public AplicationContext(DbContextOptions options) : base(options)
+        public ApplicationContext(DbContextOptions options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

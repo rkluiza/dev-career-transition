@@ -10,11 +10,10 @@ using System;
 
 namespace CasaDoCodigo.Migrations
 {
-    [DbContext(typeof(AplicationContext))]
-    [Migration("20260203164159_Modelo")]
-    partial class Modelo
+    [DbContext(typeof(ApplicationContext))]
+    partial class AplicationContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

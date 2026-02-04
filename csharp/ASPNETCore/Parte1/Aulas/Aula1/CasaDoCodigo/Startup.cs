@@ -27,10 +27,12 @@ namespace CasaDoCodigo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             string connectionString = Configuration.GetConnectionString("Default");
 
-            services.AddDbContext<AplicationContext>(options =>
+            services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connectionString)
             );
 
@@ -42,7 +44,6 @@ namespace CasaDoCodigo
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
             if (env.IsDevelopment())
@@ -56,13 +57,14 @@ namespace CasaDoCodigo
             }
 
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{codigo?}");
             });
+
             serviceProvider.GetService<IDataService>().inicializaDB();
         
             

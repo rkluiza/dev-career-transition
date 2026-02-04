@@ -10,10 +10,11 @@ namespace CasaDoCodigo
     class DataService : IDataService
     {
 
-        private readonly AplicationContext contexto;
+        private readonly ApplicationContext contexto;
         private readonly IProdutoRepository produtoRepository;
 
-        public DataService(AplicationContext contexto, IProdutoRepository produtoRepository)
+        public DataService(ApplicationContext contexto,
+            IProdutoRepository produtoRepository)
         {
             this.contexto = contexto;
             this.produtoRepository = produtoRepository;
@@ -21,16 +22,16 @@ namespace CasaDoCodigo
 
         public void inicializaDB()
         {
-            contexto.Database.EnsureCreated();
+            contexto.Database.Migrate();
 
-            List<Livro> livros = GerLivros();
+            List<Livro> livros = GetLivros();
+
             produtoRepository.SaveProdutos(livros);
 
         }
 
 
-
-        private static List<Livro> GerLivros()
+        private static List<Livro> GetLivros()
         {
             var json = File.ReadAllText("livros.json");
             var livros = JsonConvert.DeserializeObject<List<Livro>>(json);
