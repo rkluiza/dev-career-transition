@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using CasaDoCodigo.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
@@ -10,6 +11,8 @@ namespace CasaDoCodigo.Models.Repositories
     {
         void AddItem(string codigo);
         Pedido GetPedido();
+        UpdateQuantidadeResponse UpdateQuantidade(ItemPedido itemPedido);
+        Pedido UpdateCadastro(Cadastro cadastro);
     }
 
 
@@ -17,10 +20,16 @@ namespace CasaDoCodigo.Models.Repositories
     {
 
         private readonly IHttpContextAccessor contextAccessor;
+        private readonly IItemPedidoRepository itemPedidoRepository;
+        private readonly ICadastroRepository cadastroRepository;
 
-        public PedidoRepository(ApplicationContext contexto, IHttpContextAccessor contextAcessor) : base(contexto)
+
+        public PedidoRepository(ApplicationContext contexto, IHttpContextAccessor contextAcessor,
+            IItemPedidoRepository itemPedidoRepository, ICadastroRepository cadastroRepository) : base(contexto)
         {
             this.contextAccessor = contextAcessor;
+            this.itemPedidoRepository = itemPedidoRepository;
+            this.cadastroRepository = cadastroRepository;
         }
 
         public void AddItem(string codigo)
@@ -55,6 +64,7 @@ namespace CasaDoCodigo.Models.Repositories
         {
             var pedidoId = GetPedidoId();
             var pedido = produtos.Include(p => p.Itens).ThenInclude(i => i.Produto)
+                .Include(P => P.Cadastro)
                 .Where(p => p.Id == pedidoId).SingleOrDefault();
 
             if (pedido == null)
@@ -78,6 +88,35 @@ namespace CasaDoCodigo.Models.Repositories
             contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoID);
         }
 
+        public UpdateQuantidadeResponse UpdateQuantidade(ItemPedido itemPedido)
+        {
+            var itemPedidoDB = itemPedidoRepository.GetItemPedido(itemPedido.Id);
 
+            if (itemPedidoDB != null)
+            {
+                itemPedidoDB.AtualizaQuantidade(itemPedido.Quantidade);
+
+                if(itemPedido.Quantidade == 0)
+                {
+                    itemPedidoRepository.RemoveItemPedido(itemPedido.Id);
+                }
+
+                contexto.SaveChanges();
+
+                var carrinhoViewModel = new CarrinhoViewModel(GetPedido().Itens);
+                return new UpdateQuantidadeResponse(itemPedidoDB, carrinhoViewModel);
+            }
+
+            throw new ArgumentException("Item pedido não encontrado");
+
+        }
+
+        public Pedido UpdateCadastro(Cadastro cadastro)
+        {
+            var pedido = GetPedido();
+            cadastroRepository.Update(pedido.Cadastro.Id, cadastro);
+            return pedido;
+        }
     }
+
 }

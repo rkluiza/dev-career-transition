@@ -1,8 +1,11 @@
-﻿namespace CasaDoCodigo.Models.Repositories
+﻿using System;
+using System.Linq;
+
+namespace CasaDoCodigo.Models.Repositories
 {
     public interface ICadastroRepository
     {
-
+        Cadastro Update(int cadastroId, Cadastro novoCadastro);
     }
 
 
@@ -11,6 +14,21 @@
         public CadastroRepository(ApplicationContext contexto) : base(contexto)
         {
         }
+
+        public Cadastro Update(int cadastroId, Cadastro novoCadastro)
+        {
+            var cadastroDB = produtos.Where(c => c.Id == cadastroId).SingleOrDefault();
+
+            if (cadastroDB == null)
+            {
+                throw new ArgumentNullException("cadastro");
+            }
+
+            cadastroDB.Update(novoCadastro);
+            contexto.SaveChanges();
+            return cadastroDB;
+        }
+
     }
 }
 
