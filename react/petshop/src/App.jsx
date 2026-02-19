@@ -5,6 +5,8 @@ import Sobre from './paginas/Sobre'
 import { BrowserRouter, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min'
 import Pagina404 from './paginas/Pagina404';
 import Cabecalho from './components/Cabecalho';
+import Post from './paginas/Post'
+import Categoria from './paginas/Categorias';
 
 
 
@@ -21,6 +23,14 @@ function App() {
 
         <Route path='/sobre'>
           <Sobre />
+        </Route>
+
+        <Route path='/categoria/:id'>
+          <Categoria />
+        </Route>
+
+        <Route path='/posts/:id'>
+          <Post />
         </Route>
 
         <Route>
